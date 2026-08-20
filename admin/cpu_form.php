@@ -50,7 +50,12 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Socket</label>
-                    <input type="text" name="socket" class="form-control" value="<?= htmlspecialchars($cpu['socket'] ?? '') ?>" required>
+                    <select name="socket" class="form-select" required>
+                        <option value="">-- Selecciona --</option>
+                        <?php foreach (['LGA1200','LGA1700','LGA1851','AM4','AM5'] as $s): ?>
+                            <option value="<?= $s ?>" <?= ($cpu['socket'] ?? '') === $s ? 'selected' : '' ?>><?= $s ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Núcleos</label>

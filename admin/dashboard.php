@@ -28,7 +28,7 @@ require_once '../includes/conexion.php';
                 ['nombre' => 'CPU', 'archivo' => 'cpu.php'],
                 ['nombre' => 'Placa Madre', 'archivo' => null],
                 ['nombre' => 'RAM', 'archivo' => null],
-                ['nombre' => 'GPU', 'archivo' => null],
+                ['nombre' => 'GPU', 'archivo' => 'gpu.php'],
                 ['nombre' => 'Fuente de Poder', 'archivo' => null],
                 ['nombre' => 'Almacenamiento', 'archivo' => null],
                 ['nombre' => 'Gabinete', 'archivo' => null],
