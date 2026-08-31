@@ -1,6 +1,16 @@
 <?php
 require_once '../includes/auth.php';
 require_once '../includes/conexion.php';
+
+// Menú dinámico (sesión #3): antes era un arreglo fijo en PHP; ahora se
+// lee de la tabla `categorias`, que ya quedó vinculada por FK a las 8
+// tablas de componentes (categoria_id) mediante la migración
+// migracion_2026-08-30_categorias_administradores.sql.
+// El archivo admin/{tabla}.php se detecta con file_exists(), así que en
+// cuanto se construya el CRUD de una categoría nueva, la tarjeta se
+// activa sola sin tocar este archivo de nuevo.
+$stmt = $pdo->query("SELECT id, nombre, tabla FROM categorias ORDER BY id");
+$categorias = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,26 +33,17 @@ require_once '../includes/conexion.php';
     <div class="container">
         <h4 class="mb-4">Categorías de componentes</h4>
         <div class="row g-3">
-            <?php
-            $categorias = [
-                ['nombre' => 'CPU', 'archivo' => 'cpu.php'],
-                ['nombre' => 'Placa Madre', 'archivo' => null],
-                ['nombre' => 'RAM', 'archivo' => null],
-                ['nombre' => 'GPU', 'archivo' => 'gpu.php'],
-                ['nombre' => 'Fuente de Poder', 'archivo' => null],
-                ['nombre' => 'Almacenamiento', 'archivo' => null],
-                ['nombre' => 'Gabinete', 'archivo' => null],
-                ['nombre' => 'Cooler', 'archivo' => null],
-            ];
-            foreach ($categorias as $cat):
+            <?php foreach ($categorias as $cat):
+                $archivo = $cat['tabla'] . '.php';
+                $disponible = file_exists(__DIR__ . '/' . $archivo);
             ?>
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
                             <h6 class="card-title"><?= htmlspecialchars($cat['nombre']) ?></h6>
-                            <?php if ($cat['archivo']): ?>
+                            <?php if ($disponible): ?>
                                 <p class="text-muted small flex-grow-1">Gestionar componentes de esta categoría.</p>
-                                <a href="<?= $cat['archivo'] ?>" class="btn btn-sm btn-primary mt-2">Gestionar</a>
+                                <a href="<?= htmlspecialchars($archivo) ?>" class="btn btn-sm btn-primary mt-2">Gestionar</a>
                             <?php else: ?>
                                 <p class="text-muted small flex-grow-1">Próximamente.</p>
                                 <button class="btn btn-sm btn-outline-secondary mt-2" disabled>Gestionar</button>
