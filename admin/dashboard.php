@@ -3,9 +3,7 @@ require_once '../includes/auth.php';
 require_once '../includes/conexion.php';
 
 // Menú dinámico (sesión #3): antes era un arreglo fijo en PHP; ahora se
-// lee de la tabla `categorias`, que ya quedó vinculada por FK a las 8
-// tablas de componentes (categoria_id) mediante la migración
-// migracion_2026-08-30_categorias_administradores.sql.
+// lee de la tabla `categorias`.
 // El archivo admin/{tabla}.php se detecta con file_exists(), así que en
 // cuanto se construya el CRUD de una categoría nueva, la tarjeta se
 // activa sola sin tocar este archivo de nuevo.
