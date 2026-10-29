@@ -1,0 +1,51 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.85, ranksep=0.55, dpi=220, pad=0.3, newrank=true];
+node [shape=plain, fontname="Helvetica", fontsize=10];
+edge [fontname="Helvetica", fontsize=9, color="#333333", arrowsize=0.8];
+Conexion [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#555555"><tr><td bgcolor="#555555"><font color="white"><b>Conexion</b></font></td></tr><tr><td align="left" balign="left">- host: string<br align="left"/>- baseDatos: string<br align="left"/>- usuario: string<br align="left"/>- contrasena: string<br align="left"/>- charset: string<br align="left"/></td></tr><tr><td align="left" balign="left">+ obtenerConexion(): PDO<br align="left"/></td></tr></table>>];
+Administrador [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#8A4B14"><tr><td bgcolor="#8A4B14"><font color="white"><b>Administrador</b></font></td></tr><tr><td align="left" balign="left">- id: int<br align="left"/>- usuario: string<br align="left"/>- passwordHash: string<br align="left"/>- nombreCompleto: string<br align="left"/>- fechaCreacion: DateTime<br align="left"/></td></tr><tr><td align="left" balign="left">+ iniciarSesion(usuario, clave): bool<br align="left"/>+ cerrarSesion(): void<br align="left"/>+ registrarAdministrador(): bool<br align="left"/>+ restablecerContrasena(): bool<br align="left"/></td></tr></table>>];
+Categoria [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#2E6B4F"><tr><td bgcolor="#2E6B4F"><font color="white"><b>Categoria</b></font></td></tr><tr><td align="left" balign="left">- id: int<br align="left"/>- nombre: string<br align="left"/>- tabla: string<br align="left"/></td></tr><tr><td align="left" balign="left">+ listarCategorias(): array<br align="left"/>+ moduloDisponible(): bool<br align="left"/></td></tr></table>>];
+Componente [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><i><b>Componente</b></i></font></td></tr><tr><td align="left" balign="left"># id: int<br align="left"/># nombre: string<br align="left"/># marca: string<br align="left"/># precio: decimal<br align="left"/># asin: string<br align="left"/># imagen: string<br align="left"/># descripcion: string<br align="left"/># fechaActualizacion: DateTime<br align="left"/></td></tr><tr><td align="left" balign="left">+ consultar(id): Componente<br align="left"/>+ listar(): array<br align="left"/>+ buscar(texto): array<br align="left"/>+ agregar(): bool<br align="left"/>+ actualizar(): bool<br align="left"/>+ eliminar(): bool<br align="left"/>+ obtenerEnlaceAfiliado(): string<br align="left"/></td></tr></table>>];
+Procesador [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>Procesador</b></font></td></tr><tr><td align="left" balign="left">- socket: enum<br align="left"/>- nucleos: int<br align="left"/>- frecuenciaGhz: decimal<br align="left"/>- consumoW: int<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+PlacaMadre [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>PlacaMadre</b></font></td></tr><tr><td align="left" balign="left">- socket: enum<br align="left"/>- tipoRam: enum<br align="left"/>- factorForma: enum<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+MemoriaRAM [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>MemoriaRAM</b></font></td></tr><tr><td align="left" balign="left">- tipo: enum<br align="left"/>- capacidadGb: int<br align="left"/>- velocidadMhz: int<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+TarjetaGrafica [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>TarjetaGrafica</b></font></td></tr><tr><td align="left" balign="left">- memoriaGb: int<br align="left"/>- consumoW: int<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+FuentePoder [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>FuentePoder</b></font></td></tr><tr><td align="left" balign="left">- potenciaW: int<br align="left"/>- certificacion: enum<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+Almacenamiento [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>Almacenamiento</b></font></td></tr><tr><td align="left" balign="left">- tipo: enum<br align="left"/>- capacidadGb: int<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+Gabinete [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>Gabinete</b></font></td></tr><tr><td align="left" balign="left">- factorFormaSoportado: enum<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+Refrigeracion [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#1F3B6E"><tr><td bgcolor="#1F3B6E"><font color="white"><b>Refrigeracion</b></font></td></tr><tr><td align="left" balign="left">- tipo: enum<br align="left"/>- consumoW: int<br align="left"/>- socketsCompatibles: array<br align="left"/></td></tr><tr><td align="left" balign="left"> </td></tr></table>>];
+PerfilUso [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#2E6B4F"><tr><td bgcolor="#2E6B4F"><font color="white"><b>PerfilUso</b></font></td></tr><tr><td align="left" balign="left">- id: int<br align="left"/>- nombre: string<br align="left"/>- descripcion: string<br align="left"/></td></tr><tr><td align="left" balign="left">+ listarPerfiles(): array<br align="left"/></td></tr></table>>];
+ArmadoRecomendado [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#7A2E2E"><tr><td bgcolor="#7A2E2E"><font color="white"><b>ArmadoRecomendado</b></font></td></tr><tr><td align="left" balign="left">- id: int<br align="left"/>- rangoPresupuesto: enum<br align="left"/>- creadoPor: Administrador<br align="left"/>- perfil: PerfilUso<br align="left"/></td></tr><tr><td align="left" balign="left">+ agregar(): bool<br align="left"/>+ actualizar(): bool<br align="left"/>+ eliminar(): bool<br align="left"/>+ listarPorPerfil(perfil, rango): array<br align="left"/></td></tr></table>>];
+Armado [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#7A2E2E"><tr><td bgcolor="#7A2E2E"><font color="white"><b>Armado</b></font></td></tr><tr><td align="left" balign="left">- componentes: array<br align="left"/></td></tr><tr><td align="left" balign="left">+ agregarComponente(c): void<br align="left"/>+ eliminarComponente(c): void<br align="left"/>+ calcularCostoTotal(): decimal<br align="left"/>+ calcularConsumoTotal(): int<br align="left"/></td></tr></table>>];
+VerificadorCompatibilidad [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#4B3A7A"><tr><td bgcolor="#4B3A7A"><font color="white"><font point-size="9">«control»</font><br/><b>VerificadorCompatibilidad</b></font></td></tr><tr><td align="left" balign="left"> </td></tr><tr><td align="left" balign="left">+ verificarSocket(cpu, placa): bool<br align="left"/>+ verificarTipoRam(ram, placa): bool<br align="left"/>+ verificarPotencia(armado, fuente): bool<br align="left"/>+ verificarFactorForma(placa, gabinete): bool<br align="left"/>+ verificarRefrigeracion(cooler, cpu): bool<br align="left"/></td></tr></table>>];
+MotorRecomendaciones [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="5" color="#4B3A7A"><tr><td bgcolor="#4B3A7A"><font color="white"><font point-size="9">«control»</font><br/><b>MotorRecomendaciones</b></font></td></tr><tr><td align="left" balign="left"> </td></tr><tr><td align="left" balign="left">+ generar(perfil, presupuesto): array<br align="left"/></td></tr></table>>];
+{rank=same; MotorRecomendaciones; ArmadoRecomendado; Administrador}
+{rank=same; PerfilUso; Armado; VerificadorCompatibilidad}
+{rank=same; Categoria; Componente; Conexion}
+{rank=same; Procesador; PlacaMadre; MemoriaRAM; TarjetaGrafica}
+{rank=same; FuentePoder; Almacenamiento; Gabinete; Refrigeracion}
+MotorRecomendaciones -> ArmadoRecomendado [style=dashed, arrowhead=vee, label="consulta"];
+ArmadoRecomendado -> Administrador [arrowhead=vee, label="creado por  0..* → 1"];
+MotorRecomendaciones -> PerfilUso [style=dashed, arrowhead=vee, xlabel="usa"];
+ArmadoRecomendado -> PerfilUso [arrowhead=vee, xlabel="0..* → 1"];
+Armado -> VerificadorCompatibilidad [style=dashed, arrowhead=vee, xlabel="usa"];
+Administrador -> Conexion [style=dashed, arrowhead=vee, xlabel="usa"];
+ArmadoRecomendado -> Componente [dir=back, arrowtail=odiamond, xlabel="agrega 7..8"];
+Armado -> Componente [dir=back, arrowtail=odiamond, xlabel="contiene 0..8"];
+Componente -> Categoria [arrowhead=vee, label="1..* → 1"];
+Componente -> Conexion [style=dashed, arrowhead=vee];
+PerfilUso -> Categoria [style=invis];
+VerificadorCompatibilidad -> Conexion [style=invis];
+Componente -> Procesador [dir=back, arrowtail=onormal, arrowsize=1.1];
+Componente -> PlacaMadre [dir=back, arrowtail=onormal, arrowsize=1.1];
+Componente -> MemoriaRAM [dir=back, arrowtail=onormal, arrowsize=1.1];
+Componente -> TarjetaGrafica [dir=back, arrowtail=onormal, arrowsize=1.1];
+Procesador -> FuentePoder [style=invis];
+PlacaMadre -> Almacenamiento [style=invis];
+MemoriaRAM -> Gabinete [style=invis];
+TarjetaGrafica -> Refrigeracion [style=invis];
+Componente -> FuentePoder [dir=back, arrowtail=onormal, arrowsize=1.1];
+Componente -> Almacenamiento [dir=back, arrowtail=onormal, arrowsize=1.1];
+Componente -> Gabinete [dir=back, arrowtail=onormal, arrowsize=1.1];
+Componente -> Refrigeracion [dir=back, arrowtail=onormal, arrowsize=1.1];
+}

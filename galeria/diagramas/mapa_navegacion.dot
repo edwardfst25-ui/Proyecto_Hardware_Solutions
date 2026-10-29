@@ -1,0 +1,39 @@
+digraph G {
+  graph [rankdir=LR, fontname="Times New Roman", nodesep=0.25, ranksep=0.5, bgcolor="white", pad=0.3, dpi=300];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11, color="#1F3B6E", fillcolor="#E8EEF7", penwidth=1.2, margin="0.15,0.08"];
+  edge [color="#1F3B6E", arrowsize=0.7, penwidth=1.1];
+
+  inicio [label="Página de Inicio\n(index.php)", fillcolor="#1F3B6E", fontcolor="white"];
+
+  subgraph cluster_pub { label="Área pública (cliente)"; labelloc=b; fontname="Helvetica-Bold"; fontsize=12; style="rounded,dashed"; color="#7A8BA8";
+    catalogo [label="Catálogo de\nComponentes"];
+    busqueda [label="Búsqueda de\nComponentes"];
+    armado [label="Armado\npersonalizado"];
+    preferencias [label="Selección de\nPreferencias de Uso"];
+    detalle [label="Detalle del\ncomponente"];
+    compat [label="Verificación de\ncompatibilidad"];
+    costo [label="Costo total\nestimado"];
+    recomend [label="Recomendaciones\nde Armado"];
+    amazon [label="Tienda externa\n(enlace de afiliado)", style="rounded,dashed", fillcolor="white"];
+  }
+
+  subgraph cluster_adm { label="Área administrativa"; labelloc=b; fontname="Helvetica-Bold"; fontsize=12; style="rounded,dashed"; color="#7A8BA8";
+    login [label="Inicio de sesión\n(admin/login.php)", fillcolor="#F3E3D3", color="#8A4B14"];
+    restab [label="Restablecer\ncontraseña", fillcolor="#F3E3D3", color="#8A4B14"];
+    dash [label="Panel de control\n(dashboard.php)", fillcolor="#F3E3D3", color="#8A4B14"];
+    gestion [label="Gestión de componentes\n(8 categorías)", fillcolor="#F3E3D3", color="#8A4B14"];
+    crud [label="Listar · Agregar ·\nEditar · Eliminar", fillcolor="#F3E3D3", color="#8A4B14"];
+    sugerencias [label="Gestión de armados\nrecomendados", fillcolor="#F3E3D3", color="#8A4B14"];
+    registrar [label="Registrar\nadministrador", fillcolor="#F3E3D3", color="#8A4B14"];
+    logout [label="Cerrar sesión", fillcolor="#F3E3D3", color="#8A4B14"];
+  }
+
+  inicio -> {catalogo busqueda armado preferencias};
+  inicio -> login [style=dashed, label=" acceso\n restringido", fontsize=9, fontname="Helvetica"];
+  catalogo -> detalle; busqueda -> detalle;
+  detalle -> amazon; detalle -> armado [label=" agregar", fontsize=9, fontname="Helvetica"];
+  armado -> compat; armado -> costo;
+  preferencias -> recomend; recomend -> armado [label=" escoger /\n modificar", fontsize=9, fontname="Helvetica"];
+  login -> restab [style=dashed];
+  login -> dash; dash -> gestion -> crud; dash -> sugerencias; dash -> registrar; dash -> logout;
+}
