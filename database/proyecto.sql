@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 31, 2026 at 01:03 AM
+-- Generation Time: Oct 30, 2026 at 12:05 PM
 -- Server version: 8.4.3
--- PHP Version: 8.3.30
+-- PHP Version: 8.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `administradores` (
   `id` int NOT NULL,
-  `usuario` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre_completo` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `usuario` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre_completo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -40,7 +40,10 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id`, `usuario`, `password_hash`, `nombre_completo`, `fecha_creacion`) VALUES
-(1, '1094049952', '$2y$10$.a5foVZQaJ.NjddgtvkX9eBVBJNYOC.zNzyC8GFY/Fqmms3kpX7r6', 'Edward Peñaranda', '2026-08-16 21:42:10');
+(1, '1094049952', '$2y$10$.a5foVZQaJ.NjddgtvkX9eBVBJNYOC.zNzyC8GFY/Fqmms3kpX7r6', 'Edward Peñaranda', '2026-08-16 21:42:10'),
+(2, '1091972400', '$2y$10$BfED7n1tHYLdqCQ5ztNboOLRiveDlTwK9K8Ohx29u1rVLUTzjYPza', 'Jhostin Garza', '2026-10-30 11:52:00'),
+(3, '1033183603', '$2y$10$PE833CAs.wg2pFw3uHP9rujNQ6RCPjO8xaxC9qSuI9txlo5Lv4rl.', 'Juan Betancur', '2026-10-30 11:52:00'),
+(4, '1092532683', '$2y$10$5MrKWrYCMDkNNCyX9Em8Fu99cRGOCDEMNxNPl.ejwUPBImRyrFzUi', 'Richard Sepúlveda', '2026-10-30 11:52:00');
 
 -- --------------------------------------------------------
 
@@ -50,14 +53,14 @@ INSERT INTO `administradores` (`id`, `usuario`, `password_hash`, `nombre_complet
 
 CREATE TABLE `almacenamiento` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo` enum('HDD','SSD SATA','SSD NVMe') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` enum('HDD','SSD SATA','SSD NVMe') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `capacidad_gb` int NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -90,7 +93,7 @@ CREATE TABLE `armados_recomendados` (
   `id` int NOT NULL,
   `creado_por` int NOT NULL,
   `perfil_id` int NOT NULL,
-  `rango_presupuesto` enum('Económico','Intermedio','Alto') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rango_presupuesto` enum('Económico','Intermedio','Alto') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `cpu_id` int NOT NULL,
   `placa_id` int NOT NULL,
   `ram_id` int NOT NULL,
@@ -109,8 +112,8 @@ CREATE TABLE `armados_recomendados` (
 
 CREATE TABLE `categorias` (
   `id` int NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tabla` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tabla` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -135,14 +138,14 @@ INSERT INTO `categorias` (`id`, `nombre`, `tabla`) VALUES
 
 CREATE TABLE `cooler` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo` enum('Aire','Líquido (AIO)') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` enum('Aire','Líquido (AIO)') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `consumo_w` int DEFAULT '5',
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -184,7 +187,7 @@ INSERT INTO `cooler` (`id`, `nombre`, `marca`, `tipo`, `consumo_w`, `precio`, `a
 
 CREATE TABLE `cooler_socket` (
   `cooler_id` int NOT NULL,
-  `socket` enum('LGA1200','LGA1700','LGA1851','AM4','AM5') COLLATE utf8mb4_unicode_ci NOT NULL
+  `socket` enum('LGA1200','LGA1700','LGA1851','AM4','AM5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -299,16 +302,16 @@ INSERT INTO `cooler_socket` (`cooler_id`, `socket`) VALUES
 
 CREATE TABLE `cpu` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `socket` enum('LGA1200','LGA1700','LGA1851','AM4','AM5') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `socket` enum('LGA1200','LGA1700','LGA1851','AM4','AM5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `nucleos` int DEFAULT NULL,
   `frecuencia_ghz` decimal(3,1) DEFAULT NULL,
   `consumo_w` int NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -349,14 +352,14 @@ INSERT INTO `cpu` (`id`, `nombre`, `marca`, `socket`, `nucleos`, `frecuencia_ghz
 
 CREATE TABLE `fuente_poder` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `potencia_w` int NOT NULL,
-  `certificacion` enum('Sin certificación','80+ White','80+ Bronze','80+ Silver','80+ Gold','80+ Platinum','80+ Titanium') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `certificacion` enum('Sin certificación','80+ White','80+ Bronze','80+ Silver','80+ Gold','80+ Platinum','80+ Titanium') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -397,13 +400,13 @@ INSERT INTO `fuente_poder` (`id`, `nombre`, `marca`, `potencia_w`, `certificacio
 
 CREATE TABLE `gabinete` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `factor_forma_soportado` enum('ATX','Micro-ATX','Mini-ITX') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `factor_forma_soportado` enum('ATX','Micro-ATX','Mini-ITX') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -445,14 +448,14 @@ INSERT INTO `gabinete` (`id`, `nombre`, `marca`, `factor_forma_soportado`, `prec
 
 CREATE TABLE `gpu` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `memoria_gb` int DEFAULT NULL,
   `consumo_w` int NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -491,8 +494,8 @@ INSERT INTO `gpu` (`id`, `nombre`, `marca`, `memoria_gb`, `consumo_w`, `precio`,
 
 CREATE TABLE `perfiles_uso` (
   `id` int NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -513,15 +516,15 @@ INSERT INTO `perfiles_uso` (`id`, `nombre`, `descripcion`) VALUES
 
 CREATE TABLE `placa_madre` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `socket` enum('LGA1200','LGA1700','LGA1851','AM4','AM5') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo_ram` enum('DDR4','DDR5') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `factor_forma` enum('ATX','Micro-ATX','Mini-ITX') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `socket` enum('LGA1200','LGA1700','LGA1851','AM4','AM5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_ram` enum('DDR4','DDR5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `factor_forma` enum('ATX','Micro-ATX','Mini-ITX') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -562,15 +565,15 @@ INSERT INTO `placa_madre` (`id`, `nombre`, `marca`, `socket`, `tipo_ram`, `facto
 
 CREATE TABLE `ram` (
   `id` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo` enum('DDR4','DDR5') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` enum('DDR4','DDR5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `capacidad_gb` int NOT NULL,
   `velocidad_mhz` int DEFAULT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `asin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `asin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -707,7 +710,7 @@ ALTER TABLE `ram`
 -- AUTO_INCREMENT for table `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `almacenamiento`
@@ -755,7 +758,7 @@ ALTER TABLE `gabinete`
 -- AUTO_INCREMENT for table `gpu`
 --
 ALTER TABLE `gpu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `perfiles_uso`
