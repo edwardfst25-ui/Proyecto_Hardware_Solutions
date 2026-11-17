@@ -14,26 +14,27 @@ digraph G {
     compat [label="Verificación de\ncompatibilidad"];
     costo [label="Costo total\nestimado"];
     recomend [label="Recomendaciones\nde Armado"];
-    amazon [label="Tienda externa\n(enlace de afiliado)", style="rounded,dashed", fillcolor="white"];
+    comparar [label="Comparación de\ncomponentes"];
+    glosario [label="Glosario"];
+    amazon [label="Tienda externa\n(enlace de compra)", style="rounded,dashed", fillcolor="white"];
   }
 
   subgraph cluster_adm { label="Área administrativa"; labelloc=b; fontname="Helvetica-Bold"; fontsize=12; style="rounded,dashed"; color="#7A8BA8";
-    login [label="Inicio de sesión\n(admin/login.php)", fillcolor="#F3E3D3", color="#8A4B14"];
+    login [label="Inicio de sesión", fillcolor="#F3E3D3", color="#8A4B14"];
     restab [label="Restablecer\ncontraseña", fillcolor="#F3E3D3", color="#8A4B14"];
-    dash [label="Panel de control\n(dashboard.php)", fillcolor="#F3E3D3", color="#8A4B14"];
+    dash [label="Panel de control", fillcolor="#F3E3D3", color="#8A4B14"];
     gestion [label="Gestión de componentes\n(8 categorías)", fillcolor="#F3E3D3", color="#8A4B14"];
     crud [label="Listar · Agregar ·\nEditar · Eliminar", fillcolor="#F3E3D3", color="#8A4B14"];
     sugerencias [label="Gestión de armados\nrecomendados", fillcolor="#F3E3D3", color="#8A4B14"];
-    registrar [label="Registrar\nadministrador", fillcolor="#F3E3D3", color="#8A4B14"];
+    registrar [label="Gestión de administradores\n(registrar · contraseña temporal)", fillcolor="#F3E3D3", color="#8A4B14"];
     logout [label="Cerrar sesión", fillcolor="#F3E3D3", color="#8A4B14"];
   }
 
-  inicio -> {catalogo busqueda armado preferencias};
+  inicio -> {catalogo busqueda armado preferencias glosario};
   inicio -> login [style=dashed, label=" acceso\n restringido", fontsize=9, fontname="Helvetica"];
-  catalogo -> detalle; busqueda -> detalle;
+  catalogo -> detalle; busqueda -> detalle; catalogo -> comparar; comparar -> armado;
   detalle -> amazon; detalle -> armado [label=" agregar", fontsize=9, fontname="Helvetica"];
   armado -> compat; armado -> costo;
   preferencias -> recomend; recomend -> armado [label=" escoger /\n modificar", fontsize=9, fontname="Helvetica"];
-  login -> restab [style=dashed];
-  login -> dash; dash -> gestion -> crud; dash -> sugerencias; dash -> registrar; dash -> logout;
+  login -> dash; dash -> gestion -> crud; dash -> sugerencias; dash -> registrar; dash -> restab; dash -> logout;
 }
