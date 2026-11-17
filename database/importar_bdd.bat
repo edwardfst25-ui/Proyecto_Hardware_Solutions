@@ -3,11 +3,11 @@ REM ==============================================================
 REM  Hardware Solutions - IMPORTAR la BDD desde el repositorio
 REM  Usar DESPUES de hacer "git pull".
 REM  Borra la BDD local "proyecto" y la vuelve a crear con
-REM  Documentos\Base de Datos\Archivo Principal\proyecto.sql
+REM  database\proyecto.sql
 REM  Laragon (MySQL) debe estar iniciado.
 REM ==============================================================
 set MYSQL=C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysql.exe
-set SQL=%~dp0..\Documentos\Base de Datos\Archivo Principal\proyecto.sql
+set SQL=%~dp0proyecto.sql
 
 echo Esto REEMPLAZA la BDD local "proyecto" por la del repositorio.
 echo Los cambios locales que no hayas exportado se perderan.
