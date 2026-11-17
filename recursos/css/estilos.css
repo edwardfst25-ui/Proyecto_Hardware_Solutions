@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Estilos propios de Hardware Solutions (complementan a Bootstrap 5).
+   La paleta del área pública sale de los prototipos del documento
+   (figuras 11 a 14): cabecera azul, tarjetas blancas y botones azules.
+   ========================================================================== */
+
+:root {
+    --hs-azul: #34508f;         /* azul principal: botones y cabecera */
+    --hs-azul-oscuro: #263c70;  /* al pasar el cursor */
+    --hs-azul-claro: #e8edf7;   /* fondos suaves */
+    --hs-fondo: #f5f7fb;        /* fondo de página */
+}
+
+/* ---------- Área pública ---------- */
+
+.zona-publica {
+    background: var(--hs-fondo);
+}
+
+/* Bootstrap permite cambiar el color de sus botones con variables CSS */
+.zona-publica .btn-primary {
+    --bs-btn-bg: var(--hs-azul);
+    --bs-btn-border-color: var(--hs-azul);
+    --bs-btn-hover-bg: var(--hs-azul-oscuro);
+    --bs-btn-hover-border-color: var(--hs-azul-oscuro);
+    --bs-btn-active-bg: var(--hs-azul-oscuro);
+    --bs-btn-active-border-color: var(--hs-azul-oscuro);
+    --bs-btn-disabled-bg: var(--hs-azul);
+    --bs-btn-disabled-border-color: var(--hs-azul);
+}
+
+.zona-publica .btn-outline-primary {
+    --bs-btn-color: var(--hs-azul);
+    --bs-btn-border-color: var(--hs-azul);
+    --bs-btn-hover-bg: var(--hs-azul);
+    --bs-btn-hover-border-color: var(--hs-azul);
+    --bs-btn-active-bg: var(--hs-azul);
+}
+
+.zona-publica a:not(.btn):not(.nav-link):not(.navbar-brand):not(.page-link) {
+    color: var(--hs-azul);
+}
+
+.zona-publica .page-link {
+    color: var(--hs-azul);
+}
+
+.zona-publica .page-item.active .page-link {
+    background: var(--hs-azul);
+    border-color: var(--hs-azul);
+    color: #fff;
+}
+
+.zona-publica .form-check-input:checked {
+    background-color: var(--hs-azul);
+    border-color: var(--hs-azul);
+}
+
+.cabecera {
+    background: linear-gradient(135deg, #2b427a, #3f5ea3);
+    color: #fff;
+}
+
+.cabecera .nav-link.active {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+}
+
+.lema {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin: 0;
+    padding-bottom: 0.75rem;
+}
+
+.franja-busqueda {
+    background: var(--hs-azul-claro);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #d9e0ee;
+}
+
+.pie {
+    background: var(--hs-azul-claro);
+    color: #4a5568;
+}
+
+/* Tarjetas blancas con borde suave */
+.tarjeta {
+    border: 1px solid #e3e8f1;
+    box-shadow: 0 1px 2px rgba(38, 60, 112, 0.06);
+}
+
+a.tarjeta:hover,
+a.tarjeta:focus-visible {
+    border-color: var(--hs-azul);
+}
+
+.icono-grande {
+    font-size: 2.75rem;
+    color: var(--hs-azul);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.icono-mediano {
+    font-size: 2rem;
+    color: var(--hs-azul);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.etiqueta-categoria {
+    background: var(--hs-azul-claro);
+    color: var(--hs-azul-oscuro);
+}
+
+/* ---------- Fotos de componentes ---------- */
+
+/* Tres tamaños: tarjeta del catálogo, detalle y listas pequeñas */
+.foto-tarjeta {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+}
+
+.foto-detalle {
+    width: 100%;
+    height: 320px;
+    object-fit: contain;
+}
+
+.foto-seleccion {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Cuando el componente no tiene foto se muestra el ícono de su categoría */
+.foto-vacia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--hs-azul-claro);
+    color: var(--hs-azul);
+    border-radius: 0.5rem;
+    font-size: 3rem;
+}
+
+.foto-detalle.foto-vacia {
+    font-size: 7rem;
+}
+
+.foto-seleccion.foto-vacia {
+    font-size: 1.5rem;
+}
+
+/* ---------- Recomendaciones ---------- */
+
+/* Tarjeta de perfil: se resalta cuando su radio (oculto) está marcado o enfocado */
+.tarjeta-perfil {
+    cursor: pointer;
+}
+
+.btn-check:checked + .tarjeta-perfil {
+    border: 2px solid var(--hs-azul);
+    background: var(--hs-azul-claro);
+}
+
+.btn-check:focus-visible + .tarjeta-perfil {
+    outline: 3px solid rgba(52, 80, 143, 0.45);
+    outline-offset: 2px;
+}
+
+.resumen-armado {
+    background: var(--hs-fondo);
+}
+
+/* ---------- Comparación ---------- */
+
+.barra-comparar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--hs-azul-oscuro);
+    color: #fff;
+    padding: 0.75rem 0;
+    z-index: 1030;
+}
+
+/* Deja espacio al final de la página para que la barra no tape el contenido */
+.con-barra-comparar {
+    padding-bottom: 4.5rem;
+}
+
+.tabla-comparar th[scope="col"] {
+    min-width: 11rem;
+    font-weight: 600;
+}
+
+/* ---------- Armador ---------- */
+
+/* El resumen se queda visible al bajar por la página (solo en pantallas anchas) */
+@media (min-width: 992px) {
+    .resumen-fijo {
+        position: sticky;
+        top: 1rem;
+    }
+}
+
+/* ---------- Panel de administración ---------- */
+
+.miniatura {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.vista-previa {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    background: #fff;
+}
+
+/* Enlaces del menú: más claros que el valor por defecto de Bootstrap para que
+   se lean bien sobre el azul de la cabecera */
+.cabecera .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.cabecera .navbar-nav .nav-link:hover,
+.cabecera .navbar-nav .nav-link.active {
+    color: #fff;
+}
+
+/* Ayudas desplegables del armador ("¿Qué es y en qué fijarme?") */
+.ayuda summary {
+    color: var(--hs-azul);
+    cursor: pointer;
+}
+
+/* ---------- Armador: tarjetas de cada pieza ---------- */
+
+.ranura-elegida {
+    border-left: 4px solid var(--hs-azul);
+}
+
+.foto-ranura {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.foto-ranura.foto-vacia {
+    font-size: 2rem;
+}
+
+/* Componente ya elegido dentro de la ventana de selección */
+.tarjeta-elegida {
+    border: 2px solid var(--hs-azul);
+}
